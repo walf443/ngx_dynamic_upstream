@@ -1,6 +1,6 @@
 dependencies:
   pre:
-    - sudo apt-get update; sudo apt-get install valgrind weighttp -y
+    - sudo apt-get update; sudo apt-get install valgrind
   cache_directories:
     - tmp/perl
 test:
