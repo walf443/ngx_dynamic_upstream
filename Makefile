@@ -4,6 +4,12 @@ check: tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx install-perl-lib
 	PERL5LIB=tmp/perl/lib/perl5/ TEST_NGINX_BINARY=tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx \
 	prove -v --shuffle --timer t/*.t
 
+check-full: tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx install-perl-lib
+	PERL5LIB=tmp/perl/lib/perl5/ TEST_NGINX_BINARY=tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx \
+	TEST_NGINX_USE_VALGRIND=1 \
+	prove -v --shuffle --timer t/*.t
+
+
 build: tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx
 
 tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx : *.c nginx-build nginx-build.ini
@@ -26,4 +32,4 @@ install-perl-lib: cpanm
 	./cpanm -l tmp/perl Test::More
 	./cpanm -l tmp/perl Test::Nginx
 
-.PHONY: build check clean nginx-build install-perl-lib
+.PHONY: build check check-full clean nginx-build install-perl-lib
