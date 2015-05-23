@@ -6,7 +6,7 @@ check: tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx install-perl-lib
 
 check-full: tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx install-perl-lib
 	PERL5LIB=tmp/perl/lib/perl5/ TEST_NGINX_BINARY=tmp/$(NGINX_VERSION)/nginx-$(NGINX_VERSION)/objs/nginx \
-	TEST_NGINX_USE_VALGRIND=1 \
+	TEST_NGINX_CHECK_LEAK=1 \
 	prove -v --shuffle --timer t/*.t
 
 
