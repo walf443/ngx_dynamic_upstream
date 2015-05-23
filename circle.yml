@@ -1,3 +1,8 @@
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install valgrind
+  cache_directories:
+    - tmp/perl
 test:
   override:
     - make check-full
